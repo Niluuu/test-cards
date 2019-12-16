@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchProducts } from './actions/fetchProducts'
 import CartProducts from './components/cart'
-import { Spin } from 'antd'
-import { List } from 'antd';
+import { Spin, List, Row } from 'antd'
 
 class App extends Component {
   componentWillMount() {
@@ -14,9 +13,13 @@ class App extends Component {
     const { products, pending } = this.props;
 
     return (
-      <div>
+      <div style={{ margin: 20 }}>
         <h1>Moscow Region Real Estate</h1>
-        {pending ? <Spin size="large" /> : null}
+        {pending ?
+          <Row type="flex" justify="center" align="middle" style={{ marginTop: 20 }}>
+            <Spin size="large" />
+          </Row> : null
+        }
         {products && products.products && products.products.items &&
           <List
             grid={{ gutter: 16, column: 4 }}
