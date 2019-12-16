@@ -1,16 +1,17 @@
-import { fetchProductsPending, fetchProductsSuccess, fetchProductsError } from 'actions';
+import { fetchProductsPending, fetchProductsSuccess, fetchProductsError } from './index';
 
-function fetchProducts() {
+const url = "https://api.jqestate.ru/v1/properties/country "
+export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsPending());
-    fetch('https://exampleapi.com/products')
+    fetch(url)
       .then(res => res.json())
       .then(res => {
         if (res.error) {
-          throw (res.error);
+          throw (res.error)
         }
-        // dispatch(fetchProductsSuccess(res.products),
-        // return res.products
+        dispatch(fetchProductsSuccess(res))
+        return res
       })
       .catch(error => {
         dispatch(fetchProductsError(error));
@@ -18,4 +19,3 @@ function fetchProducts() {
   }
 }
 
-export default fetchProducts;

@@ -17,7 +17,7 @@ function productsReducer(state = initialState, action) {
       return {
         ...state,
         pending: false,
-        products: action.payload
+        products: action    
       }
     case FETCH_PRODUCTS_ERROR:
       return {
