@@ -1,13 +1,1 @@
-  <List
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={products.products.items.map(({ location }) => (
-      <List.Item>
-        <Row gutter={[32, 32]}>
-          <Col span={5}>
-            <CartProducts data={location} />
-          </Col>
-        </Row>
-      </List.Item>
-    ))}
-  />
+ 
