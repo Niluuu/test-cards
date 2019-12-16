@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchProducts } from './actions/fetchProducts'
-import { Spin } from 'antd';
+import CartProducts from './components/cart'
+import { Spin } from 'antd'
+import { Col, Row } from 'antd';
 
 class App extends Component {
   componentWillMount() {
@@ -10,29 +12,23 @@ class App extends Component {
 
   render() {
     const { products, error, pending } = this.props;
-    if (products){
-      if (products.products) {
-        if (products.products.items) {
-          console.log("it", products.products.items)
-          return (
-            <div>
-              Недвижимость подмосковая
-              {pending ? <Spin  size="large"/> : null}
-             
-            </div>
-          )
+
+    return (
+      <div>
+        <h1>Moscow Region Real Estate</h1>
+        {pending ? <Spin size="large" /> : null}
+        {products && products.products && products.products.items &&
+          <Row gutter={[32, 32]}>
+            {products.products.items.map(({ location }) =>
+              <Col span={5}>
+                <CartProducts data={location} />
+              </Col>
+            )}
+          </Row>
         }
-        else {
-          return null
-        }
-      }
-      else {
-        return null
-      }
-    } else {
-      return null
-    }
-  } 
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
