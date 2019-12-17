@@ -14,7 +14,7 @@ class App extends Component {
 
     return (
       <div style={{ margin: 20 }}>
-        <h1>Moscow Region Real Estate</h1>
+        <h1>Moscow  Region Real Estate</h1>
         {pending ?
           <Row type="flex" justify="center" align="middle" style={{ marginTop: 20 }}>
             <Spin size="large" />
